@@ -24,28 +24,7 @@ pipeline
                 }
             }
         }
-        stage('ContDeployment')
-        {
-            steps
-            {
-                script
-                {
-                    cicd.newDeploy("decla3","172.31.17.178","testapp")
-                }
-            }
-        }
-        stage('ContTesting')
-        {
-            steps
-            {
-                script
-                {
-                    cicd.newDownload("FunctionalTesting.git")
-                    cicd.runSelenium("decla3")
-                }
-            }
-        
-	}
+       
 
    }
 }
