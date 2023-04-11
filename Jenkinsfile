@@ -1,0 +1,51 @@
+@Library('mylibrary')_
+pipeline
+{
+    agent any
+    stages
+    {
+        stage('ContDownload')
+        {
+            steps
+            {
+                script
+                {
+                    cicd.newDownload("maven.git")
+                }
+            }
+        }
+        stage('ContBuild')
+        {
+            steps
+            {
+                script
+                {
+                    cicd.newBuild()
+                }
+            }
+        }
+        stage('ContDeployment')
+        {
+            steps
+            {
+                script
+                {
+                    cicd.newDeploy("decla3","172.31.17.178","testapp")
+                }
+            }
+        }
+        stage('ContTesting')
+        {
+            steps
+            {
+                script
+                {
+                    cicd.newDownload("FunctionalTesting.git")
+                    cicd.runSelenium("decla3")
+                }
+            }
+        
+	}
+
+   }
+}
